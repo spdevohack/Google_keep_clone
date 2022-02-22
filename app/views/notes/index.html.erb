@@ -1,0 +1,11 @@
+
+<% if @notes.present? %>
+	<%= @notes.each do |note| %>
+		<p><%= note.description %></p>
+	<% end %>
+<% else %>
+	<div class="card">
+		<p>you Don't Have Any Note in this Notebook</p>
+		 <%= link_to "Notes","#{notebooks_note_path}?notebook_id=#{ @notebook.id }", class: "btn btn-dark" %>
+	</div>	
+<% end %>	

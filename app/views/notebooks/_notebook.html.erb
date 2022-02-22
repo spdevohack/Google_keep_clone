@@ -1,0 +1,7 @@
+<div id="main" class="card" style="width: 18rem;">
+    <%= form_with  id:"my-form", model: @notebook, url: @action == 'edit' ? notebook_path : notebooks_path, method: @action == 'edit' ? :PATCH : :POST do |form| %>
+      <%= form.text_field :title, placeholder: "Title", class:'form-control input' %><br>
+      <%= form.text_area :description, placeholder: "Take a Note...", class:'form-control input'%><br>
+      <input id="submitbtn" type="submit" value="Save" name= 'Add' ></input>  
+    <% end %>
+</div>

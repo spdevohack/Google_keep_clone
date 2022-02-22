@@ -1,0 +1,8 @@
+<div class="d-flex justify-content-center align-item-center">
+    <%= form_with  id:"my-form", model: @note, url: @action == 'edit' ? note_path : notes_path, method: @action == 'edit' ? :PATCH : :POST do |form| %>
+      <%= form.label :description,  "Description:" %><br>
+      <%= form.text_area :description, class:'form-control input'%><br>
+      <%= form.text_field :notebook_id, class:'form-control input'%><br>
+      <input id="submitbtn" type="submit" value="Save" name= 'Add' ></input>  
+    <% end %>
+</div>

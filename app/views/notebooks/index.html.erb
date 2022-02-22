@@ -1,0 +1,22 @@
+
+<div id="main">
+  <div class="d-flex justify-content-center">
+    <%= link_to 'Take a Note', new_notebook_path, method: :get %>
+  </div>
+    <% @notebooks.each do |notebook|%>
+      <div id = "note-view">
+         <div class ="card" style="width: 18rem;">
+          <div class="card-body">
+            <h2> <%= notebook.title %></h2> 
+            <p><%= notebook.description%></p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+    <% end %>
+</div>
+
+
+
+
+
