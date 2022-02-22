@@ -41,6 +41,11 @@ class NotebooksController < ApplicationController
     redirect_to root_path
   end
 
+  def autosave
+    @notebook = current_user.posts.new(post_params)
+    @notebook.save
+  end
+
   private
   def notebook_params
     params.require(:notebook).permit(:title, :description, :pinned, :date, :time)

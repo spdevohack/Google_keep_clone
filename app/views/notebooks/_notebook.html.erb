@@ -9,3 +9,18 @@
       <input id="submitbtn" type="submit" value="Save" name= 'Add' ></input>  
     <% end %>   
 </div>
+
+
+<script type="text/javascript">
+  var timeoutId;
+  $('.input').on('input propertychange change', function() {
+    console.log('Textarea Change');
+
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(function() {
+        // Runs 1 second (1000 ms) after the last change    
+        saveToDB();
+    }, 1000);
+});
+</script>
+

@@ -1,4 +1,4 @@
-<div id="main" class="card" style="width: 18rem;">
+<div id="main-div" class="card" style="width: 18rem;">
     <%= form_with  id:"my-form", model: @notebook, url: @action == 'edit' ? notebook_path : notebooks_path, method: @action == 'edit' ? :PATCH : :POST do |form| %>
       <%= form.file_field :image, class:'form-control input' %><br>
       <input id="submitbtn" type="submit" value="Save" name= 'Add' ></input>  
