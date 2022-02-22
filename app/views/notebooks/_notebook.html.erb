@@ -1,26 +1,17 @@
 <div id="main-div" class="card" style="width: 18rem;">
-    <%= form_with  id:"my-form", model: @notebook, url: @action == 'edit' ? notebook_path : notebooks_path, method: @action == 'edit' ? :PATCH : :POST do |form| %>
-      <%= form.text_field :title, placeholder: "Title", class:'form-control input' %><br>
-      <%= form.text_area :description, placeholder: "Take a Note...", class:'form-control input'%><br>
-      <%= form.check_box :pinned %><br>
-      <%= form.file_field :image, class:'form-control input' %><br>
-        <%= form.date_field :date %>
-        <%= form.time_field :time %><br>
+    <%= form_with  class:"my-form", model: @notebook, url: @action == 'edit' ? notebook_path : notebooks_path, method: @action == 'edit' ? :PATCH : :POST do |form| %>
+      <%= form.text_field :title, placeholder: "Title", id: "note_title", class:'form-control input' %><br>
+      <%= form.text_area :description, placeholder: "Take a Note...", id:"note_description", class:'form-control input'%><br>
+      <%= form.check_box :pinned , class:"input" %><br>
+      <%= form.file_field :image, class:'input' %><br>
+      <%= form.date_field :date, class:"input"  %>
+      <%= form.time_field :time, class:"input"  %><br>
+
+
       <input id="submitbtn" type="submit" value="Save" name= 'Add' ></input>  
     <% end %>   
 </div>
 
-
-<script type="text/javascript">
-  var timeoutId;
-  $('.input').on('input propertychange change', function() {
-    console.log('Textarea Change');
-
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(function() {
-        // Runs 1 second (1000 ms) after the last change    
-        saveToDB();
-    }, 1000);
-});
-</script>
-
+<div class="processing-div">
+  
+</div>

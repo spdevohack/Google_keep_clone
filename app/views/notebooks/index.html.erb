@@ -20,13 +20,13 @@
                   <p><%= notebook.description%></p>
                   <p class="card-text"><%= notebook.date if notebook.date.present? %></p>
                   <p class="card-text"><%= notebook.time.strftime("%t") if notebook.time.present? %></p>
+          <% end %>  
                   <div>
                     <%= button_to "Delete", notebook_path(notebook), method: :delete, class: "btn btn-dark"%>
                   </div>
                 </div>
               </div>
             </div>             
-          <% end %>  
         <% end %>  
 
         <% if (!notebook.pinned?) && ( notebook.bin == false) %>
@@ -38,12 +38,12 @@
                 <p><%= notebook.description%></p>
                 <p class="card-text"><%= notebook.date if notebook.date.present? %></p>
                 <p class="card-text"><%= notebook.time.strftime("%t") if notebook.time.present? %></p>
+          <% end %> 
                 <div>           
                   <%= button_to "Delete", notebook_path(notebook), method: :delete, class: "btn btn-dark"%>
                 </div>
               </div>
             </div>
-          <% end %> 
         <% end %>
       </div>
    
@@ -59,13 +59,13 @@
                 <p class="card-text"><%= notebook.description %></p><br>
                 <p class="card-text"><%= notebook.date %></p>
                 <p class="card-text"><%= notebook.time %></p>
+          <% end %>
                 <div>
                   <%= button_to "Delete", notebook_path(notebook), method: :delete, class: "btn btn-dark"%>
                 </div>
 
               </div>
             </div>     
-          <% end %>
         <% end %>
       </div>
       <!-- second-child-end-->

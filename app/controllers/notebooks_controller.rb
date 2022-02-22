@@ -1,4 +1,5 @@
 class NotebooksController < ApplicationController
+  skip_before_action :verify_authenticity_token
   def index
     @notebooks = Notebook.all.order(:id)
   end
@@ -42,8 +43,15 @@ class NotebooksController < ApplicationController
   end
 
   def autosave
-    @notebook = current_user.posts.new(post_params)
-    @notebook.save
+    # debugger
+    @notebook ||= current_user.notebooks.new(notebook_params)
+
+    if  @notebook.persisted? 
+      @notebook.update(notebook_params)
+    elsif !@notebook.persisted? && @notebook.id_changed?
+      @notebook.save  
+    end
+
   end
 
   private

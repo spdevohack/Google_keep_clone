@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   root "notebooks#index"
   resources :notebooks
   resources :notes
+  
   get "notes/index/:id" => "notes#index", :as => "note_index"
   get "notes/:id/new" => "notes#new", :as => "notebooks_note"
 

@@ -1,28 +1,27 @@
-
-$(".input").on('keyup', function() {
-	console.log(3)
-})
-
-// function saveTODB(){
-// 	console.log("save!!")
-// 	$.ajax({
-// 		  type: "POST",
-//       url: "/autosave",    
-// 	})
-// }
+var timeoutId;
+$('.input').on('input propertychange change', function() {	
+  console.log('Textarea Change');
+  clearTimeout(timeoutId);
+    timeoutId = setTimeout(function() {  
+      autoSavePost();
+  }, 5000);
+});
 
 
-function saveToDB()
-{
-    console.log('Saving to the db');
-    form = $('.contact-form');
-		$.ajax({
-			url: "/autosave",
-			type: "POST",
-			data: form.serialize(), // serializes the form's elements.
-			success: function(data) {
-		
-	   		setTimeOut("saveToDB()", 1000)
-			},
-		});
+
+function autoSavePost(){
+  console.log('Saving to the db');
+
+	$.ajax({
+		url: "/autosave",
+		type: "POST",
+		data: $('.input').serialize(),
+		success: function(data) {
+   		console.log(data);
+   		// $(".my-form").submit();
+   		// event.preventDefault();
+		},
+	});
 }
+
+
