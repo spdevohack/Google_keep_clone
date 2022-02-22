@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_02_22_061016) do
+ActiveRecord::Schema[7.0].define(version: 2022_02_22_111015) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -24,14 +24,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_22_061016) do
     t.date "date"
     t.time "time"
     t.string "image"
+    t.boolean "bin", default: false
     t.index ["user_id"], name: "index_notebooks_on_user_id"
   end
 
   create_table "notes", force: :cascade do |t|
-    t.text "description"
     t.bigint "notebook_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "label_title"
     t.index ["notebook_id"], name: "index_notes_on_notebook_id"
   end
 

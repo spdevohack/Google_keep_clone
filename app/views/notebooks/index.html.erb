@@ -1,20 +1,102 @@
 
-<div id="main">
-  <div class="d-flex justify-content-center">
-    <%= link_to 'Take a Note', new_notebook_path, method: :get %>
+<div id="main-div">
+
+ 
+  <div class="text-center">
+    <%= link_to 'Create Note', new_notebook_path, method: :get %>
   </div>
+
+  <div class = "d-flex flex-wrap keep-note">
     <% @notebooks.each do |notebook|%>
-      <div id = "note-view">
-         <div class ="card" style="width: 18rem;">
-          <div class="card-body">
-            <h2> <%= notebook.title %></h2> 
-            <p><%= notebook.description%></p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
+
+      <!-- first_Child_start-->
+      <div id = "note-view"> 
+        <% if (notebook.pinned?) && (notebook.bin == false) %>
+          <%= link_to edit_notebook_path(notebook) do %>
+            <div>
+               <div class ="card m-4" style="width: 18rem; ">
+                <div class="card-body">
+                  <h2> <%= notebook.title %></h2> 
+                  <p><%= notebook.description%></p>
+                  <p class="card-text"><%= notebook.date if notebook.date.present? %></p>
+                  <p class="card-text"><%= notebook.time.strftime("%t") if notebook.time.present? %></p>
+                  <div>
+                    <%= button_to "Delete", notebook_path(notebook), method: :delete, class: "btn btn-dark"%>
+                  </div>
+                </div>
+              </div>
+            </div>             
+          <% end %>  
+        <% end %>  
+
+        <% if (!notebook.pinned?) && ( notebook.bin == false) %>
+          <%= link_to edit_notebook_path(notebook) do %>
+
+            <div class ="card m-4" style="width: 18rem; ">
+              <div class="card-body">
+                <h2> <%= notebook.title %></h2> 
+                <p><%= notebook.description%></p>
+                <p class="card-text"><%= notebook.date if notebook.date.present? %></p>
+                <p class="card-text"><%= notebook.time.strftime("%t") if notebook.time.present? %></p>
+                <div>           
+                  <%= button_to "Delete", notebook_path(notebook), method: :delete, class: "btn btn-dark"%>
+                </div>
+              </div>
+            </div>
+          <% end %> 
+        <% end %>
       </div>
-    <% end %>
+   
+      <!-- first child end   -->
+
+      <!-- second-child start-->
+      <div id="reminder-view", style="display: none;">
+        <% if ((notebook.date.present?) || (notebook.time.present?)) && notebook.bin == false %>
+          <%= link_to edit_notebook_path(notebook) do %>
+            <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title"><%= notebook.title %></h5>
+                <p class="card-text"><%= notebook.description %></p><br>
+                <p class="card-text"><%= notebook.date %></p>
+                <p class="card-text"><%= notebook.time %></p>
+                <div>
+                  <%= button_to "Delete", notebook_path(notebook), method: :delete, class: "btn btn-dark"%>
+                </div>
+
+              </div>
+            </div>     
+          <% end %>
+        <% end %>
+      </div>
+      <!-- second-child-end-->
+
+      <!-- third-child start-->
+      <div id="bin-view", style="display: none;">
+        <% if (notebook.bin?) %>
+         <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title"><%= notebook.title %></h5>
+              <p class="card-text"><%= notebook.description %></p><br>
+              <p class="card-text"><%= notebook.date %></p>
+              <p class="card-text"><%= notebook.time %></p>
+            </div>
+          </div>     
+        <% end %>
+      </div>
+      <!-- third-child-end-->
+
+      <div id="edit-label-view">
+       <!--  <div class="card" style="width: 18rem;">
+         
+        </div> -->
+      </div>
+
+
+    <% end %> 
+  </div>
+
 </div>
+
 
 
 

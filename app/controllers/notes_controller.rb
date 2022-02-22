@@ -1,5 +1,5 @@
 class NotesController < ApplicationController
-  before_action :notebook, only: [:new, :show]
+  # before_action :notebook, only: [:new, :show]
   def index
     @notebook = Notebook.find(params[:notebook_id])
     @notes =@notebook.notes.all

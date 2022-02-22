@@ -1,7 +1,11 @@
-<div id="main" class="card" style="width: 18rem;">
+<div id="main-div" class="card" style="width: 18rem;">
     <%= form_with  id:"my-form", model: @notebook, url: @action == 'edit' ? notebook_path : notebooks_path, method: @action == 'edit' ? :PATCH : :POST do |form| %>
       <%= form.text_field :title, placeholder: "Title", class:'form-control input' %><br>
       <%= form.text_area :description, placeholder: "Take a Note...", class:'form-control input'%><br>
+      <%= form.check_box :pinned %><br>
+      <%= form.file_field :image, class:'form-control input' %><br>
+        <%= form.date_field :date %>
+        <%= form.time_field :time %><br>
       <input id="submitbtn" type="submit" value="Save" name= 'Add' ></input>  
-    <% end %>
+    <% end %>   
 </div>

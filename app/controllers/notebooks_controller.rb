@@ -37,12 +37,12 @@ class NotebooksController < ApplicationController
 
   def destroy
     @notebook = Notebook.find(params[:id])
-    @notebook.destroy
+    @notebook.update(bin: true)
     redirect_to root_path
   end
 
   private
   def notebook_params
-    params.require(:notebook).permit(:title, :description)
+    params.require(:notebook).permit(:title, :description, :pinned, :date, :time)
   end
 end
