@@ -4,24 +4,37 @@ $('.input').on('input propertychange change', function() {
   clearTimeout(timeoutId);
     timeoutId = setTimeout(function() {  
       autoSavePost();
-  }, 5000);
+  }, 2000);
 });
 
 
 
+var notebookId = document.querySelector('#notebook_id');
 function autoSavePost(){
   console.log('Saving to the db');
-
-	$.ajax({
-		url: "/autosave",
-		type: "POST",
-		data: $('.input').serialize(),
-		success: function(data) {
-   		console.log(data);
-   		// $(".my-form").submit();
-   		// event.preventDefault();
-		},
-	});
+  if (notebookId.value == ''){
+		$.ajax({
+			url: "/create",
+			type: "POST",
+			data: $('.input').serialize(),
+			success: function(data) {
+				notebookId.value = data
+	   		console.log('create');
+	   		// $(".my-form").submit();
+	   		// event.preventDefault();
+			},
+		});
+  }
+  else{
+  	$.ajax({
+			url: "/update",
+			type: "POST",
+			data: $('.input').serialize(),
+			success: function(data) {
+	   		console.log('success');
+			},
+		});
+  }
 }
 
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_02_22_111015) do
+ActiveRecord::Schema[7.0].define(version: 2022_02_23_061130) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -25,6 +25,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_22_111015) do
     t.time "time"
     t.string "image"
     t.boolean "bin", default: false
+    t.date "note_bin"
     t.index ["user_id"], name: "index_notebooks_on_user_id"
   end
 

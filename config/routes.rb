@@ -18,6 +18,9 @@ Rails.application.routes.draw do
   get "notes/index/:id" => "notes#index", :as => "note_index"
   get "notes/:id/new" => "notes#new", :as => "notebooks_note"
 
-  post "autosave", to: "notebooks#autosave"
+  post "create", to: "notebooks#create"
+  post "update", to: "notebooks#update"
+  delete "remove_bin/:id", to: "notebooks#remove_bin", as: "restore_note"
+
 
 end

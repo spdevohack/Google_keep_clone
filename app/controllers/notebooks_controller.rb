@@ -11,8 +11,11 @@ class NotebooksController < ApplicationController
 
   def create
     @notebook = current_user.notebooks.new(notebook_params) #link every notebook with user 
+
     if @notebook.save!
-      redirect_to notebooks_path, notice: "notebook created successfully"
+      respond_to do |format| 
+        format.json{ render json: @notebook.id.to_json}
+      end 
     else
       render 'new'
     end
@@ -24,7 +27,8 @@ class NotebooksController < ApplicationController
   end
 
   def update
-    @notebook = Notebook.find(params[:id])
+    # debugger
+    @notebook = Notebook.find(params[:notebook][:id])
     if @notebook.update(notebook_params)
       redirect_to root_path
     else
@@ -38,24 +42,24 @@ class NotebooksController < ApplicationController
 
   def destroy
     @notebook = Notebook.find(params[:id])
-    @notebook.update(bin: true)
+    @notebook.update(bin: true, note_bin: Date.today)
     redirect_to root_path
   end
 
   def autosave
     # debugger
     @notebook ||= current_user.notebooks.new(notebook_params)
-
-    if  @notebook.persisted? 
-      @notebook.update(notebook_params)
-    elsif !@notebook.persisted? && @notebook.id_changed?
-      @notebook.save  
-    end
-
+    @notebook.save
   end
 
+  def remove_bin
+    # debugger
+    @notebook = Notebook.find(params[:id])
+    @notebook.update(bin: false, note_bin: nil)
+    redirect_to root_path
+  end
   private
   def notebook_params
-    params.require(:notebook).permit(:title, :description, :pinned, :date, :time)
+    params.require(:notebook).permit(:id, :title, :description, :pinned, :date, :time, :note_bin)
   end
 end

@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+
+
+ /*style: "background-color: white;
+    border: none;"*/ 
+
+ #trash{
+  background-color: white;
+  border: none;
+ }   

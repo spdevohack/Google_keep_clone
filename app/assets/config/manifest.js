@@ -3,4 +3,5 @@
 //= link_tree ../../javascript .js
 //= link_tree ../../../vendor/javascript .js
 //= link collapse_bar.js
-//= link autosave.js 
+//= link autosave.js
+//= link show_reminder.js 
