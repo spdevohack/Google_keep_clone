@@ -1,7 +1,8 @@
 class NotebooksController < ApplicationController
   skip_before_action :verify_authenticity_token
+  before_action :authenticate_user!
   def index
-    @notebooks = Notebook.all.order(:id)
+    @notebooks = current_user.notebooks.all.order(:id)
   end
 
   def new

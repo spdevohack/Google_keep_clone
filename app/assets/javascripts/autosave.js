@@ -20,8 +20,7 @@ function autoSavePost(){
 			success: function(data) {
 				notebookId.value = data
 	   		console.log('create');
-	   		// $(".my-form").submit();
-	   		// event.preventDefault();
+	   	
 			},
 		});
   }

@@ -5,3 +5,4 @@
 //= link collapse_bar.js
 //= link autosave.js
 //= link show_reminder.js 
+//= link pinned.js
