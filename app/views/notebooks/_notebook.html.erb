@@ -3,7 +3,7 @@
       <%= form.text_field :id, type: "hidden", value: @notebook.id, class:"notes_id input" %>
       <%= form.text_field :title, placeholder: "Title", id: "note_title", class:'form-control input' %><br>
       <%= form.text_area :description, placeholder: "Take a Note...", id:"note_description", class:'form-control input'%><br>
-      <%= form.check_box :pinned , class:"input" %><br>
+      <%= form.check_box :pinned , class:'input pin' %><br>
       <%= form.file_field :image, class:'input' %><br>
       <input type="button" name="Add Reminder", value="Add Reminder", id= "reminder-btn" >
 
@@ -17,6 +17,29 @@
     <% end %>   
 </div>
 
-<div class="processing-div">
+<!-- <div class="processing-div">
   
-</div>
+</div> -->
+
+<script type="text/javascript">
+  var pinNote = document.querySelector(".pin");
+  pinNote.setAttribute('value', '0')
+  pinvalue = parseInt(pinNote.value)
+
+  pinNote.addEventListener("click", pinSet)
+  function pinSet(){
+    if (pinNote.checked == true) {
+      pinNote.setAttribute('value', '1')
+      pinvalue = parseInt(pinNote.value)
+
+    }else {
+      pinNote.setAttribute('value', '0')
+      pinvalue = parseInt(pinNote.value)
+
+    }
+    // console.log(pinNote);
+    console.log(pinNote.value)
+
+  }
+
+</script>

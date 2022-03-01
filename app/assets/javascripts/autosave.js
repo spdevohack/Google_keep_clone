@@ -1,10 +1,10 @@
 var timeoutId;
 $('.input').on('input propertychange change', function() {	
   console.log('Textarea Change');
-  clearTimeout(timeoutId);
+  clearTimeout(timeoutId);	
     timeoutId = setTimeout(function() {  
       autoSavePost();
-  }, 2000);
+  }, 1000);
 });
 
 

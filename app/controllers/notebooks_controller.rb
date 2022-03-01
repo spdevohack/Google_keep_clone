@@ -3,6 +3,8 @@ class NotebooksController < ApplicationController
   before_action :authenticate_user!
   def index
     @notebooks = current_user.notebooks.all.order(:id)
+    @empty_note = Notebook.notes_empty
+    Notebook.find(@empty_note[0].id).destroy if @empty_note.present?
   end
 
   def new
@@ -11,6 +13,7 @@ class NotebooksController < ApplicationController
   end
 
   def create
+    debugger
     @notebook = current_user.notebooks.new(notebook_params) #link every notebook with user 
 
     if @notebook.save!
@@ -28,8 +31,8 @@ class NotebooksController < ApplicationController
   end
 
   def update
-    # debugger
     @notebook = Notebook.find(params[:notebook][:id])
+    # debugger
     if @notebook.update(notebook_params)
       redirect_to root_path
     else
@@ -59,6 +62,7 @@ class NotebooksController < ApplicationController
     @notebook.update(bin: false, note_bin: nil)
     redirect_to root_path
   end
+
   private
   def notebook_params
     params.require(:notebook).permit(:id, :title, :description, :pinned, :date, :time, :note_bin)

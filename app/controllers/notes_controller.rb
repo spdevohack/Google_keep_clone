@@ -10,7 +10,7 @@ class NotesController < ApplicationController
   end
 
   def create
-    debugger
+    # debugger
     @note = Note.new(note_params)
     if @note.save
       redirect_to notes_path

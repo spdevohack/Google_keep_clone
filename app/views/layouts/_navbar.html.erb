@@ -10,7 +10,7 @@
 <nav class="navbar navbar-light bg-light ">
   <a class=" navbar-brand openbtn" >☰ Keep</a> 
   <div>
-    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0 flex-row px-5" >
       <% if user_signed_in? %>
 
         <li class="nav-item">
@@ -19,7 +19,7 @@
 
       <% else%>
 
-        <li class="nav-item">
+        <li class="nav-item mx-4">
           <%= link_to "Sign In", new_user_session_path , class:"nav-link text-dark"%>     
         </li>
 
